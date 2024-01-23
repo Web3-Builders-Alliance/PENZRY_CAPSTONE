@@ -33,9 +33,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <>
-      <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-    </>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 
