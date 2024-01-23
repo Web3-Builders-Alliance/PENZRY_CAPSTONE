@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,6 +20,7 @@ export default defineConfig({
       _stream_readable: "empty-module",
       _stream_writable: "empty-module",
       _stream_transform: "empty-module",
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   define: {
