@@ -5,18 +5,16 @@ import { AudioRecorder } from "react-audio-voice-recorder";
 import useMintFeedback from "../../../../views/user-feedback-form/services";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { getUserandQuestions } from "../../../../Services/createUser";
 import useMint from "./services";
 import toast from "react-hot-toast";
+import { RecruiterSignUpSchema } from "../../../../libs/validation-schema/Schema";
 interface formProps {
-  firstname: string;
-  lastname: string;
   email: string;
 }
 
 const initialValues = {
-  firstname: "",
-  lastname: "",
   email: "",
 };
 
@@ -44,6 +42,7 @@ function FeedbackForm() {
     formState: { errors },
   } = useForm<formProps>({
     defaultValues: initialValues,
+    resolver: yupResolver(RecruiterSignUpSchema),
     mode: "onTouched",
   });
 
@@ -72,6 +71,9 @@ function FeedbackForm() {
 
   const onSubmit = handleSubmit(async (data) => {
     const nft = await project(id);
+
+    console.log(data, nft);
+
     toast.success("Form submitted successfully check your mail");
     reset();
   });
@@ -137,7 +139,6 @@ function FeedbackForm() {
       <Button
         type="primary"
         className="w-full mt-4 md:mt-5"
-        onClick={handleSubmit}
       >
         Submit Feedback
       </Button>
