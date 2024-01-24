@@ -28,11 +28,13 @@ function extractFeedback(data: Data[]): Array<{
   feedback: string;
   userEmail: string;
   numberResponses: number;
+  projectId: number;
 }> {
   const result: Array<{
     feedback: string;
     userEmail: string;
     numberResponses: number;
+    projectId: number;
   }> = [];
 
   data.forEach((item: Data) => {
@@ -41,6 +43,7 @@ function extractFeedback(data: Data[]): Array<{
         feedback: feedback.feedback_title,
         userEmail: item.email,
         numberResponses: 0,
+        projectId: feedback.projectId,
       });
     });
   });
@@ -57,8 +60,6 @@ const filterfeedbacks = async (user: User) => {
     throw new Error(`${projectError.message}`);
   }
   const feedBack = extractFeedback(projectI);
-  console.log(user,feedBack);
-
   return feedBack;
 };
 

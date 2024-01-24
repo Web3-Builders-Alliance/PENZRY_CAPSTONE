@@ -11,7 +11,6 @@ const FeedbackTable = () => {
     queryKey: ["feedbacks"],
     queryFn: () => filterfeedbacks({ profile: auth.name }),
   });
-
   return (
     <div>
       {isLoading && <ButtonSpinner />}
@@ -25,7 +24,8 @@ const FeedbackTable = () => {
             <Fragment key={Index}>
               <TableCard
                 feedback={cur.feedback}
-                userEmail={cur.userEmail}
+                userNumber={cur.projectId}
+                userName={auth.name}
                 numberReponses={cur.numberResponses}
               />
             </Fragment>

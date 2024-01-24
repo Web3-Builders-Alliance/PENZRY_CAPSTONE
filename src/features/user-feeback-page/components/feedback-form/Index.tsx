@@ -30,7 +30,7 @@ function FeedbackForm() {
   const [data, setData] = useState<any>();
   const [loading, setIsloading] = useState(false);
   const sendValues = (data: any) => {
-    let [info] = data;
+    const [info] = data;
     const infos = {
       value: info,
     };

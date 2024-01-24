@@ -4,11 +4,18 @@ import CopyLinkButton from "../../../../Components/ui/CopyText";
 
 interface TableCardProps {
   feedback: string;
-  userEmail: string;
+  userNumber: number;
   numberReponses: string;
+  userName: string;
 }
 
-const TableCard = ({ feedback, userEmail, numberReponses }: TableCardProps) => {
+const TableCard = ({ feedback, userNumber, numberReponses,userName }: TableCardProps) => {
+  const currentUrl = window.location.href;
+  function getBaseUrl(currentUrl: string) {
+    const urlObject = new URL(currentUrl);
+    return `${urlObject.protocol}//${urlObject.host}/`;
+  }
+  const baseUrl = getBaseUrl(currentUrl);
   return (
     <div className="bg-white w-full rounded-lg px-4 md:px-6 lg:px-10 py-4 lg:py-5 flex items-center justify-between mb-3">
       <div className="flex items-end lg:gap-2 gap-0">
@@ -17,7 +24,7 @@ const TableCard = ({ feedback, userEmail, numberReponses }: TableCardProps) => {
             {feedback}
           </p>
 
-          <CopyLinkButton linkToCopy={userEmail} linkText={userEmail} />
+          <CopyLinkButton linkToCopy={`${baseUrl}${userName}/${userNumber}/feedback`} linkText={"Copy Review Url"} />
         </div>
         <Button
           type="small"
