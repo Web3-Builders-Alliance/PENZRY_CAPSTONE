@@ -29,6 +29,7 @@ function CreateNFTOffers() {
 
   const onSubmit = handleSubmit(async (data) => {
     // Handle form submission
+    console.log(data)
     reset();
   });
 

@@ -1,4 +1,4 @@
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import FormControl from "../../../../Components/form/FormControl";
 import Button from "../../../../Components/ui/Button";
 import { AudioRecorder } from "react-audio-voice-recorder";
@@ -19,8 +19,8 @@ const initialValues = {
 };
 
 function FeedbackForm() {
-  const { mintFeedback } = useMintFeedback();
-  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  // const { mintFeedback } = useMintFeedback();
+  const [,setAudioBlob] = useState<Blob | null>(null);
   const [values, setValues] = useState<any>([]);
   const { project } = useMint();
   const params = useParams();
@@ -92,7 +92,7 @@ function FeedbackForm() {
 
       {loading &&
         data &&
-        data.map((item: any, index: number) => {
+        data.map((item: any) => {
           return (
             <FormControl
               formType={item.question_type}
@@ -136,10 +136,7 @@ function FeedbackForm() {
         <br />
       </div>
 
-      <Button
-        type="primary"
-        className="w-full mt-4 md:mt-5"
-      >
+      <Button type="primary" className="w-full mt-4 md:mt-5">
         Submit Feedback
       </Button>
     </form>

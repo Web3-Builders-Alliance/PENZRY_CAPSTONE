@@ -6,7 +6,7 @@ import { filterfeedbacks } from "../../../../Services/createUser";
 
 const InfoCardsGrid = () => {
   const { auth } = useAuth();
-  const { isLoading, data, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["feedbacks"],
     queryFn: () => filterfeedbacks({ profile: auth.name }),
   });

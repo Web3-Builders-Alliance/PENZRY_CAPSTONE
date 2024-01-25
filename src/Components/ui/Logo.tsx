@@ -5,7 +5,7 @@ interface LogoProps {
   className: string;
 }
 
-const Logo = ({ type, className, ...props }: LogoProps) => {
+const Logo = ({ type, className}: LogoProps) => {
   const styles = "h-8 font-bold text-body-xxl text-primary " + className;
   if (type === "white") {
     return (

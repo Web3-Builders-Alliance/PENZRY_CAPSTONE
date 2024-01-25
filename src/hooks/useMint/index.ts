@@ -1,5 +1,7 @@
 import axios from "../../Services/axios";
 
-function useMint() {}
+function useMint() {
+    return axios
+}
 
 export default useMint;

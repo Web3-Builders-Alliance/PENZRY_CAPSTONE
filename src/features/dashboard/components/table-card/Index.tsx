@@ -3,10 +3,10 @@ import { FiArrowUpRight } from "react-icons/fi";
 import CopyLinkButton from "../../../../Components/ui/CopyText";
 
 interface TableCardProps {
-  feedback: string;
-  userNumber: number;
-  numberReponses: string;
-  userName: string;
+  feedback?: string;
+  userNumber?: number;
+  numberReponses?: string;
+  userName?: string;
 }
 
 const TableCard = ({ feedback, userNumber, numberReponses,userName }: TableCardProps) => {

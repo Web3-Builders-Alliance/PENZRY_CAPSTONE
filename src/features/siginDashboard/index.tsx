@@ -2,7 +2,7 @@ import Button from "../../Components/ui/Button";
 import { FcGoogle } from "react-icons/fc";
 import useWeb3Auth from "../../hooks/useWeb3Auth";
 export default function SigninDashboard() {
-  const [login, logout] = useWeb3Auth();
+  const [login] = useWeb3Auth();
   return (
     <div className=" bg-grey-10  font-outfit h-screen flex justify-center w-screen  items-center  ">
       <Button
