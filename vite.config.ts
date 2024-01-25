@@ -23,6 +23,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: "dist", // Change 'dist' to your desired output directory
+  },
   define: {
     global: "globalThis",
   },
