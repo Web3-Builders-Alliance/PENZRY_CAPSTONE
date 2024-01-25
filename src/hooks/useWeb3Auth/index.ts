@@ -10,7 +10,8 @@ import { createUSer, findUser } from "../../Services/createUser";
 import { useNavigate } from "react-router-dom";
 
 const clientId =
-  "BEiqaHl8u_pJCiWD2z1k5dnUS24MrMNiGcr94iobGYuDCDkDuXMpK7fItVJPTr_PhnJ37iVKtUViaQrxGrH4j_0";
+  "BNiprztLD4Ei3bgxITdYx-usxrMJm3Zv_peqmC4HAzXzJpfVr5d_WkoHgsOvRG8iMtDuEX95gdBBOxoZd30-eMg";
+  // "BEiqaHl8u_pJCiWD2z1k5dnUS24MrMNiGcr94iobGYuDCDkDuXMpK7fItVJPTr_PhnJ37iVKtUViaQrxGrH4j_0";
 function useWeb3Auth() {
   const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
   // const [provider, setProvider] = useState<IProvider | null>(null);

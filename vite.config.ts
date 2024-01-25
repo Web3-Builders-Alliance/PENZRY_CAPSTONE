@@ -24,7 +24,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "dist", // Change 'dist' to your desired output directory
+    outDir: "dist",
   },
   define: {
     global: "globalThis",
