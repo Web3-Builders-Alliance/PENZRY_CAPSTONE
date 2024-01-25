@@ -7,7 +7,7 @@ import { CiShare1 } from "react-icons/ci";
 import { useQuery } from "@tanstack/react-query";
 const FeedbackTable = () => {
   const { auth } = useAuth();
-  const { isLoading, data, isError } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["feedbacks"],
     queryFn: () => filterfeedbacks({ profile: auth.name }),
   });
