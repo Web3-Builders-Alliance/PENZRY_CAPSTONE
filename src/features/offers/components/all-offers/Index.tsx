@@ -31,14 +31,15 @@ const content = [
 
 const AllOffers = () => {
   return (
+
     <div>
       {content.map((cur, Index) => {
         return (
           <Fragment key={Index}>
+            <>hello</>
             <TableCard
               feedback={cur.feedback}
-              userEmail={cur.userEmail}
-              numberReponses={cur.numberResponses}
+              numberReponses={+cur.numberResponses}
             />
           </Fragment>
         );

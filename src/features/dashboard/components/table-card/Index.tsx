@@ -5,7 +5,7 @@ import CopyLinkButton from "../../../../Components/ui/CopyText";
 interface TableCardProps {
   feedback?: string;
   userNumber?: number;
-  numberReponses?: string;
+  numberReponses?: number;
   userName?: string;
 }
 

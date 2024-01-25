@@ -17,7 +17,7 @@ const JobTable = () => {
           <Fragment key={Index}>
             <TableCard
               feedback={cur.feedback}
-              numberReponses={cur.numberResponses}
+              numberReponses={+cur.numberResponses}
             />
           </Fragment>
         );
