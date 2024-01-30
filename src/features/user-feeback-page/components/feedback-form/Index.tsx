@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import FormControl from "../../../../Components/form/FormControl";
 import Button from "../../../../Components/ui/Button";
-import { AudioRecorder } from "react-audio-voice-recorder";
+// import { AudioRecorder } from "react-audio-voice-recorder";
 // import useMintFeedback from "../../../../views/user-feedback-form/services";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getUserandQuestions } from "../../../../Services/createUser";
-import useMint from "./services";
+import useMint, { filterObject2, filterUniqueKeyValues } from "./services";
 import toast from "react-hot-toast";
 import { RecruiterSignUpSchema } from "../../../../libs/validation-schema/Schema";
+// import { filter } from "@chakra-ui/react";
 interface formProps {
   email: string;
 }
@@ -20,20 +21,18 @@ const initialValues = {
 
 function FeedbackForm() {
   // const { mintFeedback } = useMintFeedback();
-  const [,setAudioBlob] = useState<Blob | null>(null);
+  const [, setAudioBlob] = useState<Blob | null>(null);
   const [values, setValues] = useState<any>([]);
   const { project } = useMint();
   const params = useParams();
   const { company, id } = params;
-  const [data, setData] = useState<any>();
+  const [datainfo, setData] = useState<any>();
   const [loading, setIsloading] = useState(false);
   const sendValues = (data: any) => {
-    const [info] = data;
-    const infos = {
-      value: info,
-    };
-    setValues((prev: any) => [infos, ...prev]);
-    console.log(values);
+    setValues((prev: any) => {
+      const updatedValues = [{ ...data }, ...prev];
+      return updatedValues;
+    });
   };
   const {
     register,
@@ -57,23 +56,22 @@ function FeedbackForm() {
     }
     Questions();
   }, [company, id, params]);
-  const addAudioElement = (blob: Blob) => {
-    const audioContainer = document.getElementById("audio");
-    if (audioContainer) {
-      const url = URL.createObjectURL(blob);
-      const audio = document.createElement("audio");
-      setAudioBlob(blob);
-      audio.src = url;
-      audio.controls = true;
-      audioContainer.appendChild(audio);
-    }
-  };
+  // const addAudioElement = (blob: Blob) => {
+  //   const audioContainer = document.getElementById("audio");
+  //   if (audioContainer) {
+  //     const url = URL.createObjectURL(blob);
+  //     const audio = document.createElement("audio");
+  //     setAudioBlob(blob);
+  //     audio.src = url;
+  //     audio.controls = true;
+  //     audioContainer.appendChild(audio);
+  //   }
+  // };
 
   const onSubmit = handleSubmit(async (data) => {
-    const nft = await project(id);
-
-    console.log(data, nft);
-
+    const filteredObject1 = filterUniqueKeyValues(values);
+    const filteredObject3 = filterObject2(filteredObject1, datainfo);
+    await project(id, filteredObject3);
     toast.success("Form submitted successfully check your mail");
     reset();
   });
@@ -91,8 +89,8 @@ function FeedbackForm() {
       />
 
       {loading &&
-        data &&
-        data.map((item: any) => {
+        datainfo &&
+        datainfo.map((item: any) => {
           return (
             <FormControl
               formType={item.question_type}
@@ -102,7 +100,7 @@ function FeedbackForm() {
               errors={errors}
               placeholder="Enter your answer"
               key={item.id}
-              sendValue={sendValues}
+              sendValue={(data: any) => sendValues({ [item.name]: data })}
             />
           );
         })}
@@ -113,7 +111,7 @@ function FeedbackForm() {
         <p className="text-body-md text-primary my-4">
           The audio feedback is required
         </p>
-        <AudioRecorder
+        {/* <AudioRecorder
           onRecordingComplete={addAudioElement}
           audioTrackConstraints={{
             noiseSuppression: true,
@@ -132,7 +130,7 @@ function FeedbackForm() {
             audioBitsPerSecond: 128000,
           }}
           // showVisualizer={true}
-        />
+        /> */}
         <br />
       </div>
 
